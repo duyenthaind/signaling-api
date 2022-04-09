@@ -27,6 +27,22 @@ dependencies {
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	testImplementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.17.2'
+	implementation 'org.apache.logging.log4j:log4j-core:2.17.2'
+	implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+}
+
+configurations {
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+		exclude group: 'ch.qos.logback', module: 'logback-classic'
+		exclude group: 'org.apache.logging.log4j', module: 'log4j-to-slf4j'
+		exclude group: "com.vaadin.external.google", module: "android-json"
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 tasks.named('test') {
