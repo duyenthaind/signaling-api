@@ -8,8 +8,8 @@ import org.example.signalingapi.entity.UserEntity;
 import org.example.signalingapi.service.AuthenticationService;
 import org.example.signalingapi.service.JwtService;
 import org.example.signalingapi.service.UserService;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -62,8 +62,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                         .body(new Response(2, "Username or password is incorrect", null));
             } else {
                 String accessToken = jwtService.generateAccessToken(user.get());
-                Response res = new Response(0, "Success", new JSONObject());
-                res.setField("accessToken", accessToken);
+                JSONObject data = new JSONObject();
+                data.put("accessToken", accessToken);
+                Response res = new Response(0, "Success", data.toString());
                 return ResponseEntity.ok(res);
             }
         } catch (Exception ex) {

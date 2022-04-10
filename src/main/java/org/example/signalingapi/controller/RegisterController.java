@@ -32,7 +32,8 @@ public class RegisterController {
         if (registerRequest == null) {
             return ResponseEntity.badRequest().body(new Response(-1, "Body must not be not null", null));
         }
-        if (StringUtils.isEmpty(registerRequest.getName()) || StringUtils.isEmpty(registerRequest.getPassword()) || StringUtils.isEmpty(registerRequest.getUsername())) {
+        if (StringUtils.isEmpty(registerRequest.getName()) || StringUtils.isEmpty(registerRequest.getPassword()) || StringUtils.isEmpty(registerRequest.getUserName())) {
+            log.error("Invalid body request " + registerRequest);
             return ResponseEntity.badRequest().body(new Response(-1, "Invalid body request", null));
         }
         return userService.createNewUser(registerRequest);

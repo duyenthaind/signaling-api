@@ -9,6 +9,6 @@ import lombok.Data;
 public class RegisterRequest {
     private String name;
     private String avatarUrl;
-    private String username;
+    private String userName;
     private String password;
 }

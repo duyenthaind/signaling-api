@@ -16,4 +16,8 @@ public interface UserService {
     Optional<UserEntity> findByUserName(String username);
 
     ResponseEntity<Response> createNewUser(RegisterRequest registerRequest);
+
+    ResponseEntity<Response> getBasicInfo(String username);
+
+    ResponseEntity<Response> findUser(String hint);
 }
